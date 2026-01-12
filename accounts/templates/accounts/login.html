@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}"> -->
+     <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+     font-family: "Poppins", sans-serif;
+
+     margin: 0;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+
+    background: linear-gradient(
+        90deg,
+        #cfeef5 0%,
+        #f7f7f7 50%,
+        #ffd9b3 100%)
+}
+
+form {
+    
+    padding: 30px;
+    width: 300px;
+    border-radius: 8px;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+.login-box input{
+    border-radius: 11px;
+    border: 1px solid rgb(191, 189, 189);
+}
+.login-box button{
+    width: 150px;
+    font-weight: 550;
+    border-radius: 11px;
+    border: none;
+    background-color: #FF2B6A;
+    font-size: large;
+}
+.btn{
+    text-align: center;
+}
+label{
+    font-weight: 550;
+}
+input::placeholder{
+    color: black;
+}
+</style>
+</head>
+<body>
+    <div class="login-box">
+        <form method="POST">
+            {% csrf_token %}
+
+            <h2 style="text-align: center;">Login</h2>
+
+            <label>Email Address</label>
+            <input type="text" name="username" placeholder="Enter your Email id or Username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your Password" required>
+<div class="btn">
+            <button type="submit">Login</button>
+</div>
+            {% for message in messages %}
+                <p style="color:red;">{{ message }}</p>
+            {% endfor %}
+        </form>
+    </div>
+
+    <script src="{% static 'accounts/js/login.js' %}"></script>
+</body>
+</html>

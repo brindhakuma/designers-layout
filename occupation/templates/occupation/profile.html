@@ -1,0 +1,297 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Profile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f6f7fb;
+}
+.topbar{
+    display: flex;
+    justify-content: space-around;
+    font-size: large;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 220px;
+     background: orange;
+    color: black;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sidebar li i {
+    margin-right: 10px;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+     width: 130px;
+}
+
+/* ===== MAIN ===== */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+.asset{
+    text-align: center;
+}
+.music{
+    border: 1px solid gray;
+    width: 220px;
+    height: 220px;
+    padding: 11px;
+}
+
+.custom button{
+    padding: 11px;
+    color: white;
+    background-color: #ff8a00;
+    border: none;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: 550;
+}
+.custom{
+    padding-left: 200px;
+}
+.subbtn button{
+    background-color: rgb(232, 48, 84);
+    padding: 11px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: 550;
+}
+.subbtn{
+    text-align: center;
+}
+.product input, .product textarea {
+    padding: 7px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+}
+.product label {
+    font-weight: 500;
+}
+.added{
+    padding-left: 200px;
+}
+.honest{
+    position: absolute;
+    top: 450px;
+    left: 450px;
+    line-height: 11px;
+    display: none;
+}
+.solid{
+     position: absolute;
+    top: 450px;
+    left: 450px;
+    line-height: 11px;
+    display: none;
+}
+.salt{
+     position: absolute;
+    top: 450px;
+    left: 450px;
+    line-height: 11px;
+    display: none;
+}
+.salt img{
+    width: 70px;
+    border: 2px solid rgb(197, 137, 18);
+    padding: 5px;
+}
+</style>
+</head>
+
+<body>
+<h2><img src="{% static 'images/logo.png' %}" alt="Screenshot 3" loading="lazy"> VTS Designers</h2>
+<div class="container">
+
+    
+    <div class="sidebar">
+        <ul>
+           
+              <li class="{% if request.resolver_match.url_name == 'overview' %}active{% endif %}">
+        <a href="{% url 'overview' %}" style="color: inherit; text-decoration: none;">
+            <i class="fa-solid fa-house"></i> Overview
+        </a>
+    </li>
+            
+             <li class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">
+        <a href="{% url 'projects' %}" style="color: inherit; text-decoration: none;">
+            <i class="fa-solid fa-upload"></i> Projects
+        </a>
+    </li>
+            
+              <li>
+    <a href="{% url 'profile' %}" style="color: inherit; text-decoration: none;">
+        <i class="fa-solid fa-folder"></i>Profile
+    </a>
+</li>
+        </ul>
+    </div>
+
+   
+    <div class="main">
+
+        <div class="topbar">
+            <div class="asset">
+                <h3 style="text-align: left;">Filter</h3>
+                <div class="music">
+                    <input type="checkbox" id="parent"> Projects<br><br>
+                    <input type="checkbox" id="liquid"> People<br><br>
+                    <input type="checkbox"> Assets<br><br>
+                    <input type="checkbox" id="sugar"> Images<br>
+                </div>
+            </div>     
+
+            <div class="product">
+                <h3>Profile</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <label for="id_name">Name</label><br>
+                   
+                    {{ form.name }}<br>
+
+                    <label for="id_occupation">Occupation</label><br>
+                    
+                    {{ form.occupation }}<br>
+
+                    <label for="id_company_name">Company name</label><br>
+                    
+                    {{ form.company_name }}<br>
+
+                    <label for="id_location">Location</label><br>
+                    
+                    {{ form.location }}<br>
+
+                    <label for="id_website">Website URL</label><br>
+            
+                    {{ form.website }}<br>
+
+                    <label for="id_about_me">About me title</label><br>
+                    
+                    {{ form.about_me }}<br>
+</div>
+        </div>
+                    <div class="added">
+                        <label for="id_project_description">Project Description</label><br>
+                        
+                        {{ form.project_description }}
+                    </div>
+
+                    <div class="custom">
+                        <button type="button">+ Add custom section</button>
+                    </div>
+
+                    <div class="subbtn">
+                         
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+</div>
+<div class="honest" id="childs">
+    <h3>Grocery-Paw Mark -Toxi 500gms</h3>
+    <h3>personal care-ocean fresh 500gms</h3>
+    <h3>Homecare-Biowash-250gms</h3>
+    <h3>Healthcare-uniaktive-350gms</h3>
+    <h3>Homecare-Toilet freshner-150gms</h3>
+    <h3>Grocey-Chicken-masala-500gms</h3>
+</div>
+
+<div class="solid" id="solid">
+    <h3>Priya john</h3>
+    <h3>Rishi khan</h3>
+    <h3>Amy</h3>
+    <h3>Deepika</h3>
+</div>
+
+<div class="salt" id="salt">
+    <img src="{% static 'images/grocery1.png' %}" alt="Screenshot 3" loading="lazy">
+    <img src="{% static 'images/grocery2.png' %}" alt="Screenshot 3" loading="lazy">
+    <img src="{% static 'images/grocery3.png' %}" alt="Screenshot 3" loading="lazy">
+    <img src="{% static 'images/grocery4.png' %}" alt="Screenshot 3" loading="lazy">
+    <img src="{% static 'images/grocery1.png' %}" alt="Screenshot 3" loading="lazy">
+</div>
+<script>
+    const yes = document.getElementById("parent");
+    const no = document.getElementById("childs");
+    yes.addEventListener("change",function(){
+        if(this.checked){
+            no.style.display = "block";
+            district.style.display = "none";
+            pencil.style.display = "none";
+        }else{
+            no.style.display = "none";
+            
+        }
+    })
+
+    const state = document.getElementById("liquid");
+    const district = document.getElementById("solid");
+    state.addEventListener("change",function(){
+        if(this.checked){
+            district.style.display = "block";
+            no.style.display = "none";
+            pencil.style.display = "none";
+        }else{
+            district.style.display = "none";
+        }
+    })
+
+    const pen = document.getElementById("sugar");
+    const pencil = document.getElementById("salt");
+    pen.addEventListener("change",function(){
+        if(this.checked){
+            pencil.style.display = "block";
+            district.style.display = "none";
+            no.style.display = "none";
+        }else{
+            pencil.style.display = "none";
+        }
+    })
+</script>
+</body>
+</html>
+
+
