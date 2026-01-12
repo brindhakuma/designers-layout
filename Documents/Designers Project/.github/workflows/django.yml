@@ -24,5 +24,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Django system check
-        run: |
-          python backend/manage.py check
+  env:
+    SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    DEBUG: ${{ secrets.DEBUG }}
+    ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+  run: |
+    python backend/manage.py check
+
