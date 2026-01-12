@@ -1,0 +1,302 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>New Project</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f6f7fb;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 220px;
+     background: orange;
+    color: black;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sidebar li i {
+    margin-right: 10px;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+    background: rgba(255,255,255,0.2);
+     width: 130px;
+     color: white;
+}
+
+/* ===== MAIN ===== */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.topbar input {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    background: #ff2b6a;
+    color: white;
+}
+
+.topbar input::placeholder {
+    color: white;
+    font-weight: 550;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.share-btn {
+    background: orangered;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.share-btn{
+    font-weight: 550;
+}
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+/* ===== UPLOAD BOX ===== */
+.upload-box {
+    
+    padding: 25px;
+    max-width: 800px;
+}
+
+.inquiry input{
+    padding: 11px;
+    width: 650px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+.arrange{
+    padding-left: 150px;
+}
+.noted input{
+    padding: 35px;
+    width: 600px;
+}
+.rating{
+    display: flex;
+    gap: 155px;
+}
+.rating button{
+    padding: 11px;
+    border-radius: 8px;
+    width: 250px;
+    font-size: medium;
+    font-weight: 550;
+    background-color: white;
+}
+.send button{
+    background-color: #ff2b6a;
+    color: white;
+    font-weight: 550;
+    border-radius: 5px;
+    padding: 13px;
+    border: none;
+}
+.send{
+    padding-left: 270px;
+    margin-top: 15px;
+}
+.sidebar li.active,
+.sidebar li:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+.arrange{
+    padding-left: 270px;
+    background-color: rgb(250, 241, 229);
+}
+.weird{
+    display: flex;
+}
+.weird i{
+    position: relative;
+    left: 35px;
+    top: 9px;
+}
+.weird input::placeholder{
+    padding-left: 25px;
+}
+.upload-box{
+    display: flex;
+    gap: 10px;
+}
+</style>
+</head>
+
+<body>
+<h2> <img src="{% static 'images/logo.png' %}" alt="Screenshot 3" loading="lazy"> VTS Designers</h2>
+<div class="container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+        
+        <ul>
+            <li class="{% if request.resolver_match.url_name == 'overview' %}active{% endif %}">
+        <a href="{% url 'overview' %}" style="color: inherit; text-decoration: none;">
+            <i class="fa-solid fa-house"></i> Overview
+        </a>
+    </li>
+            
+     <li class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">
+        <a href="{% url 'projects' %}" style="color: inherit; text-decoration: none;">
+            <i class="fa-solid fa-upload"></i> Projects
+        </a>
+    </li>
+
+        <li>
+    <a href="{% url 'profile' %}" style="color: inherit; text-decoration: none;">
+        <i class="fa-solid fa-folder"></i>Profile
+    </a>
+</li>
+        </ul>
+    </div>
+
+    <!-- ===== MAIN ===== -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+             <div class="weird">
+            <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            <input type="text" placeholder="Search the designers">
+             </div>
+            <div class="top-actions">
+                <button class="share-btn">Share Your Work</button>
+                 <a href="{% url 'scroll_page' %}?show_protect=true">
+                    <img src="{% static 'images/notify.png' %}" alt="Screenshot 3" loading="lazy" class="avatar">
+                </a>
+                <a href="{% url 'messages' %}">
+                 <img src="{% static 'images/mailbox.png' %}" alt="Screenshot 3" loading="lazy" class="avatarone"></a>
+                <img src="{% static 'images/profile img.png' %}" alt="Screenshot 3" loading="lazy" class="avatar">
+            </div>
+        </div>
+
+        <!-- UPLOAD FORM -->
+         <div class="arrange">
+        <div class="upload-box">
+             <img src="{% static 'images/image50.png' %}" alt="Screenshot 3" loading="lazy" class="avatar">
+            <h3>Invite Rishi Khan</h3>
+        </div>
+        <form method="POST" action="{% url 'send_inquiry' %}">
+    {% csrf_token %}
+     <input type="hidden" name="hiring_type" id="hiring_type">
+        <div class="inquiry">
+        <p>What are you Hiring for?</p>
+        <input type="text" name="hiring_for" required>
+
+        <p>Choose the categories?</p>
+        <input type="text" name="category" required>
+
+        <p>What is your budget?</p>
+        <input type="text" name="budget" required>
+
+<div class="noted">
+        <p>Project description?</p>
+        <input type="text" name="project_description" required>
+</div>
+<div class="noted">
+        <p>Add a personal note?</p>
+        <input type="text" name="personal_note">
+</div>
+
+
+    <p>I'M hiring for</p>
+    <div class="rating">
+    <div>
+         <button type="button" onclick="selectHiring('Freelancing', this)">
+        <img src="{% static 'images/round1.png' %}" 
+             alt="Freelancing" 
+             class="hire-img">
+        Freelancing</button>
+    </div>
+    <div>
+         <button type="button" onclick="selectHiring('Freelancing', this)">
+        <img src="{% static 'images/round1.png' %}" 
+             alt="Freelancing" 
+             class="hire-img">
+            Company</button>
+    </div>
+    </div>
+    <div class="send">
+         
+        <button  type="submit">Send Inquiry</button>
+    </div>
+</div>
+</div>
+         </div>
+
+<script>
+    
+function selectHiring(value, button) {
+    // store value
+    document.getElementById('hiring_type').value = value;
+
+    // reset all images first
+    document.querySelectorAll('.hire-img').forEach(img => {
+        img.src = "{% static 'images/round1.png' %}";
+    });
+
+    // set selected image
+    const img = button.querySelector('img');
+    img.src = "{% static 'images/round2.png' %}";
+}
+
+
+</script>
+
+</body>
+</html>

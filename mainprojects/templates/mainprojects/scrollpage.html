@@ -1,0 +1,471 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VTS Designers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f6f7fb;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 220px;
+     background: orange;
+    color: black;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+     width: 130px;
+}
+
+/* ===== MAIN ===== */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.topbar input {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    background: #ff2b6a;
+    color: white;
+}
+
+.topbar input::placeholder {
+    color: white;
+    font-weight: 550;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.share-btn {
+    background: orangered;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 550;
+}
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+/* ===== CARDS & SCROLL ===== */
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.upload-box {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.profile-card {
+    width: 260px;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+}
+
+.card-header {
+    height: 70px;
+    background: linear-gradient(90deg, #ff9a44, #ff2d95);
+    position: relative;
+}
+
+.edit-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.profile-img {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profile-img img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+}
+
+.card-body {
+    padding: 55px 15px 20px;
+}
+
+.card-body h3 {
+    margin: 10px 0 5px;
+}
+
+.location {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stats div {
+    flex: 1;
+}
+
+.count {
+    font-weight: bold;
+    display: block;
+}
+
+.label {
+    font-size: 12px;
+    color: #777;
+}
+
+.message-btn {
+    background: linear-gradient(90deg, #ff9a44, #ff2d95);
+    border: none;
+    color: #fff;
+    padding: 8px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.horizontal-scroll {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-top: 15px;
+      width: 800px; 
+}
+.horizontal-scroll::-webkit-scrollbar{
+    display: none;
+}
+.horizontal-scroll img {
+    min-width: 240px;
+    height: 250px;
+    border-radius: 12px;
+    object-fit: cover;
+        flex-shrink: 0;    
+}
+
+.profile-card {
+    position: sticky;
+    top: 20px;
+    line-height: 9px;
+}
+/* .appreciate{
+  line-height: 2px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  width: 300px;
+  border-radius: 7px;
+  background-color: white;
+  
+} */
+ .appreciate{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;      /* notification box background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 300px;           /* adjust as needed */
+    text-align: center;
+    line-height: 15px;
+ }
+/* .protect{
+  position: absolute;
+  top: 150px;
+  left: 900px;
+  z-index: 9999;
+  display: none;
+} */
+ #protect {
+   position: fixed;
+    top: 0;
+    left: 18%;
+    width: 90%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: none; 
+}
+.blur {
+    filter: blur(5px);
+    pointer-events: none; /* so clicks don’t work on blurred content */
+    user-select: none;
+    transition: filter 0.3s;
+}
+.buzzar{
+    display: flex;
+}
+.weird{
+    display: flex;
+}
+.weird i{
+    position: relative;
+    left: 35px;
+    top: 9px;
+}
+.weird input{
+    width: 200px;
+}
+.weird input::placeholder{
+    padding-left: 25px;
+}
+
+</style>
+</head>
+<body>
+
+<h2><img src="{% static 'images/logo.png' %}" alt="Screenshot 3" loading="lazy">VTS Designers</h2>
+
+<div class="container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+        <ul>
+            <!-- <li><i class="fa-solid fa-chart-line"></i>Overview</li> -->
+              <li class="{% if request.resolver_match.url_name == 'overview' %}active{% endif %}">
+        <a href="{% url 'overview' %}" style="color: inherit; text-decoration: none;">
+            <i class="fa-solid fa-house"></i> Overview
+        </a>
+    </li>
+            <!-- <li class="active"><i class="fa-solid fa-folder"></i>Projects</li> -->
+              <li class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">
+        <a href="{% url 'projects' %}" style="color: inherit; text-decoration: none;">
+            <i class="fa-solid fa-upload"></i> Projects
+        </a>
+    </li>
+            <!-- <li><i class="fa-solid fa-user"></i>Profile</li> -->
+               <li>
+    <a href="{% url 'profile' %}" style="color: inherit; text-decoration: none;">
+        <i class="fa-solid fa-folder"></i>Profile
+    </a>
+</li>
+        </ul>
+    </div>
+
+    <!-- ===== MAIN ===== -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+             <div class="weird">
+            <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            <input type="text" placeholder="Search the designers">
+             </div>
+            <div class="top-actions">
+                <button class="share-btn">Share Your Work</button>
+                 <img src="{% static 'images/notify.png' %}" alt="Screenshot 3" loading="lazy" class="avatar">
+                <a href="{% url 'messages' %}">
+                <img src="{% static 'images/mailbox.png' %}" alt="Screenshot 3" loading="lazy" class="avatarone"></a>
+                 <img src="{% static 'images/profile img.png' %}" alt="Screenshot 3" loading="lazy" class="avatar">
+            </div>
+        </div>
+
+        <!-- CARDS + HORIZONTAL SCROLL -->
+        <div class="upload-container">
+
+            <!-- ===== ROW 1 ===== -->
+            <div class="upload-box">
+                <!-- Profile Card -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <a href="{% url 'profile' %}">
+                        <span class="edit-icon">✏️</span>
+                        </a></div>
+                    <div class="profile-img"> <img src="{% static 'images/profile img.png' %}" alt="Screenshot 3" loading="lazy" class="avatar"></div>
+                    <div class="card-body">
+                        <h3>Priya John</h3>
+                        <p class="location">Chennai</p>
+                        <div class="stats">
+                            <div><span class="count">20</span><span class="label">Appreciation</span></div>
+                            <div><span class="count">20</span><span class="label">Followers</span></div>
+                            <div><span class="count">20</span><span class="label">Project Views</span></div>
+                        </div>
+                        <a href="{% url 'messages' %}">
+                        <button class="message-btn">Message</button></a>
+                    </div>
+                </div>
+
+                <!-- Horizontal Scroll Images -->
+                <div class="horizontal-scroll">
+<img src="{% static 'images/image4.png' %}" alt="Screen3" loading="lazy">
+<img src="{% static 'images/image5.png' %}" alt="Screen4" loading="lazy">
+<img src="{% static 'images/image 7.png' %}" alt="Screen5" loading="lazy">
+<img src="{% static 'images/image 6.png' %}" alt="Screen5" loading="lazy">
+<img src="{% static 'images/image 8.png' %}" alt="Screen5" loading="lazy">
+                
+
+
+                    
+                </div>
+            </div>
+
+            <!-- ===== ROW 2 ===== -->
+            <div class="upload-box">
+                <div class="profile-card">
+                    <div class="card-header">
+                        <a href="{% url 'profile' %}">
+                        <span class="edit-icon">✏️</span>
+                    </a></div>
+                    <div class="profile-img"> <img src="{% static 'images/profile img.png' %}" alt="Screenshot 3" loading="lazy" class="avatar"></div>
+                    <div class="card-body">
+                        <h3>Ravi Kumar</h3>
+                        <p class="location">Bangalore</p>
+                        <div class="stats">
+                            <div><span class="count">15</span><span class="label">Appreciation</span></div>
+                            <div><span class="count">30</span><span class="label">Followers</span></div>
+                            <div><span class="count">12</span><span class="label">Project Views</span></div>
+                        </div>
+                        <a href="{% url 'messages' %}">
+                        <button class="message-btn">Message</button></a>
+                    </div>
+                </div>
+
+                <div class="horizontal-scroll">
+<img src="{% static 'images/image 9.png' %}" alt="Screenshot 3" loading="lazy">
+<img src="{% static 'images/image 8.png' %}" alt="Screenshot 4" loading="lazy">
+<img src="{% static 'images/image 10.png' %}" alt="Screenshot 5" loading="lazy">
+<img src="{% static 'images/image 6.png' %}" alt="Screen5" loading="lazy">
+<img src="{% static 'images/image5.png' %}" alt="Screen5" loading="lazy">
+                </div>
+            </div>
+
+        </div> <!-- upload-container -->
+
+    </div> <!-- main -->
+</div> <!-- container -->
+
+<div class="protect" id="protect">
+<div class="appreciate">
+  <h4 style="padding: 10px;text-align: center;">Notification</h4>
+  <div class="buzzar">
+    <img src="{% static 'images/image51.png' %}" alt="Screenshot 3" loading="lazy" class="avatar">
+    <h4>Jeni appreciated the projects</h4>
+    <p style="color: gray;font-size: small;">1hr ago</p>
+  </div>
+  <div>
+    <img src="{% static 'images/image4.png' %}" alt="Screenshot 3" style="width: 300px;height: 200px;">
+  </div>
+</div>
+</div>
+
+
+<script>
+//   const one = document.getElementById("bell")
+//   const two = document.getElementById("protect")
+//   one.addEventListener("click",function(){
+//     if(two.style.display == "block"){
+//       two.style.display = "none";
+//     }else{
+//       two.style.display = "block";
+//     }
+//   })
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     const protect = document.getElementById("protect");
+
+//     // Check if URL has query ?show_protect=true
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const showProtect = urlParams.get("show_protect");
+
+//     if(showProtect === "true") {
+//         protect.style.display = "block"; // show notification div
+//     }
+
+//     // Optional: click anywhere to toggle/hide
+//     protect.addEventListener("click", function(){
+//         if(protect.style.display == "block"){
+//             protect.style.display = "none";
+//         } else {
+//             protect.style.display = "block";
+//         }
+//     });
+// });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const protect = document.getElementById("protect");
+    const mainContent = document.querySelector(".main-content");
+
+    // Check URL query ?show_protect=true
+    const urlParams = new URLSearchParams(window.location.search);
+    const showProtect = urlParams.get("show_protect");
+
+    if(showProtect === "true") {
+        protect.style.display = "block";      // show notification
+        mainContent.classList.add("blur");    // blur everything else
+    }
+
+    // Optional: click on protect to close and remove blur
+    protect.addEventListener("click", function(){
+        protect.style.display = "none";
+        mainContent.classList.remove("blur");
+    });
+});
+</script>
+</body>
+</html>
+

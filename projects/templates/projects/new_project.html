@@ -1,0 +1,423 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>New Project</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f6f7fb;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 220px;
+     background: orange;
+    color: black;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.sidebar li i {
+    margin-right: 10px;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    width: 130px;
+}
+
+/* ===== MAIN ===== */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.topbar input {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    background: #ff2b6a;
+    color: white;
+}
+
+.topbar input::placeholder {
+    color: white;
+    font-weight: 550;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.share-btn {
+    background: orangered;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.share-btn{
+    font-weight: 550;
+}
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+/* ===== UPLOAD BOX ===== */
+.upload-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #ff2b6a;
+    max-width: 800px;
+}
+
+.upload-header {
+    line-height: 2px;
+    align-items: center;
+}
+
+.drop-area {
+    border: 2px dashed #ff2b6a;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.drop-area i {
+    font-size: 32px;
+    color: #ff2b6a;
+}
+
+.drop-area button {
+    margin-top: 10px;
+    background: #ff2b6a;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+}
+
+.webdesign {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.webdesign input {
+    width: 350px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+}
+
+#fileInput {
+    display: none;
+}
+textarea{
+    width: 800px;
+    border: 1px solid sandybrown;
+    border-radius: 8px;
+}
+.assist button{
+    background-color: #f8d29f;
+    color: #cc761f;
+    border: none;
+    border-radius: 8px;
+}
+.assist input{
+    border-radius: 8px;
+     border: 1px solid sandybrown;
+}
+.vision{
+    display: flex;
+    justify-content: space-around;
+}
+.vision button{
+    padding: 8px;
+    border-radius: 5px;
+     border: 1px solid sandybrown;
+     width: 250px;
+     background-color: white;
+    text-align: left;
+}
+.down{
+    display: flex;
+    gap: 50px;
+}
+.down button{
+    background-color: #ff2b6a;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-weight: 550;
+}
+.aromatic{
+    display: flex;
+    justify-content: space-between;
+}
+.draft button{
+    background-color: #FFA44B;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-weight: 550;
+}
+.arrange{
+    padding-left: 150px;
+}
+.weird{
+    display: flex;
+}
+.weird i{
+    position: relative;
+    left: 35px;
+    top: 9px;
+}
+.weird input::placeholder{
+    padding-left: 25px;
+}
+.board{
+    display: flex;
+    gap: 150px;
+}
+</style>
+</head>
+
+<body>
+<h2><img src="{% static 'images/logo.png' %}" alt="Screenshot 3" loading="lazy"> VTS Designers</h2>
+<div class="container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+        
+        <!-- <ul>
+            <li><i class="fa-solid fa-chart-line"></i>Overview</li>
+            <li class="active"><i class="fa-solid fa-folder"></i>Projects</li>
+            <li><i class="fa-solid fa-user"></i>Profile</li>
+        </ul> -->
+         <ul>
+            <!-- <li class="active"><i class="fa-solid fa-chart-line"></i>Overview</li> -->
+              <li class="{% if request.resolver_match.url_name == 'overview' %}active{% endif %}">
+        <a href="{% url 'overview' %}" style="color: inherit; text-decoration: none;">
+            <i class="fa-solid fa-house"></i> Overview
+        </a>
+    </li>
+
+        <li class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}">
+        <a href="{% url 'projects' %}" style="color: inherit; text-decoration: none;">
+            <i class="fa-solid fa-upload"></i> Projects
+        </a>
+    </li>
+
+            <!-- <li><i class="fa-solid fa-folder"></i>Projects</li> -->
+            <!-- <li><i class="fa-solid fa-folder"></i>Profile</li> -->
+             <li>
+    <a href="{% url 'profile' %}" style="color: inherit; text-decoration: none;">
+        <i class="fa-solid fa-folder"></i>Profile
+    </a>
+</li>
+        </ul>
+    </div>
+
+    <!-- ===== MAIN ===== -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+             <div class="weird">
+            <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            <input type="text" placeholder="Search the designers">
+             </div>
+            <div class="top-actions">
+                <button class="share-btn">Share Your Work</button>
+                 <a href="{% url 'scroll_page' %}?show_protect=true">
+                <img src="{% static 'images/notify.png' %}" alt="Screenshot 3" loading="lazy" class="avatar"></a>
+                <a href="{% url 'messages' %}">
+                 <img src="{% static 'images/mailbox.png' %}" alt="Screenshot 3" loading="lazy" class="avatarone"></a>
+               <img src="{% static 'images/profile img.png' %}" alt="Screenshot 3" loading="lazy" class="avatar">
+            </div>
+        </div>
+
+        <!-- UPLOAD FORM -->
+         <div class="arrange">
+        <div class="upload-box">
+
+            <div class="upload-header">
+                <h3>Project Images</h3><br>
+                <p>Fill the details about your design project</p>
+            </div>
+
+            <form method="POST"
+                  enctype="multipart/form-data"
+                  action="{% url 'publish_project' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="drop-area">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Drop your images here<br><span style="color: gray;">or click to browse files</span></p>
+                    <p style="font-size: small;color: gray;">PNG,JPG,GIF upto 10MB each</p>
+                    <input type="file"
+       id="fileInput"
+       name="image"
+       accept="image/*"
+       hidden>
+
+                   
+                </div>
+
+                <div class="webdesign">
+                    <div>
+                        <h4>Project Title</h4>
+                        <input type="text" name="title" required>
+                    </div>
+
+                    <div>
+                        <h4>Category</h4>
+                        <input type="text" name="category" required>
+                    </div>
+                </div>
+
+                <h4>Description</h4>
+             <textarea rows="5" cols="50" placeholder="Describe your project,inspiration and design process...."></textarea>
+
+                <h4>Tags</h4>
+                <div class="assist">
+                    <button>Ui design</button>
+                    <button>Mobile apps</button>
+                    <button>Minimalist</button>
+                    <input type="text" placeholder="add tags">
+                </div>
+
+                <div class="vision">
+                <div>
+                    <h4>Visibility</h4>
+                    <button>Public</button>
+                </div>
+
+                <div>
+                    <h4>License</h4>
+                    <button>All rights reserved</button>
+                </div>
+
+                <div>
+                    <h4>Allow Downloads</h4>
+                    <input type="checkbox" >Enable downloads
+                </div>
+                </div>
+<hr style="border: 2px solid rgb(238, 178, 103);">
+    <div class="aromatic">            
+<div class="draft">
+     <button>Save as draft</button>
+        </div>
+        <div class="down">
+                <p style="margin-top: -1px;">Cancel</p>
+                <div>
+                <button type="submit">Publish Project</button>
+                </div>
+        </div>
+            </form>
+
+        </div>
+         </div>
+         <h3>Recent Uploads</h3>
+         <div class="board">
+            <img src="{% static 'images/upload1.png' %}" alt="Screenshot 3" loading="lazy">
+            <img src="{% static 'images/upload2.png' %}" alt="Screenshot 3" loading="lazy">
+            <img src="{% static 'images/upload3.png' %}" alt="Screenshot 3" loading="lazy">
+            
+         </div>
+    </div>
+</div>
+
+<script>
+const dropArea = document.querySelector(".drop-area");
+const fileInput = document.getElementById("fileInput");
+
+/* Prevent default browser behavior */
+["dragenter", "dragover", "dragleave", "drop"].forEach(event => {
+    dropArea.addEventListener(event, e => e.preventDefault());
+});
+
+/* Highlight on drag */
+dropArea.addEventListener("dragover", () => {
+    dropArea.style.background = "#ffe5d1";
+});
+
+dropArea.addEventListener("dragleave", () => {
+    dropArea.style.background = "";
+});
+
+/* Handle drop */
+dropArea.addEventListener("drop", (e) => {
+    const files = e.dataTransfer.files;
+    fileInput.files = files;   // Attach dropped files to input
+});
+
+/* Click anywhere to open file chooser */
+dropArea.addEventListener("click", () => {
+    fileInput.click();
+});
+
+// dropArea.addEventListener("drop", (e) => {
+//     const files = e.dataTransfer.files;
+//     fileInput.files = files;
+
+//     for (let file of files) {
+//         const img = document.createElement("img");
+//         img.src = URL.createObjectURL(file);
+//         img.style.width = "80px";
+//         img.style.margin = "10px";
+//         dropArea.appendChild(img);
+//     }
+// });
+</script>
+
+</body>
+</html>
